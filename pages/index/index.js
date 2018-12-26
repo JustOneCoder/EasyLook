@@ -22,6 +22,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded' // 默认值
       },
       fail(res) {
+        
         console.log('66666失败：' + res.data)
       },
       success(res) {
