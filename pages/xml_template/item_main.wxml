@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<template name="item_main" data="{{list}}">
+<view class="container">
+  <image class="user_info_img" src="" />
+  <view class="user_info_right">
+     <text class="user_info_right_title" ></text>
+
+  </view>
+</view>
+</template>

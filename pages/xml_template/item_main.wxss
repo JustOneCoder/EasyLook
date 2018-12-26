@@ -1,0 +1,9 @@
+/**index.wxss**/
+.container {
+ 
+}
+
+.icon_head {
+  width: 30rpx;
+  height: 30rpx;
+}

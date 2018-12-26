@@ -1,0 +1,35 @@
+/**index.wxss**/
+.container {
+width: 100%;
+padding: 20rpx;
+
+}
+
+.list1{
+    width: 100%;
+    margin: 10rpx;
+}
+
+.user_info{
+ 
+}
+
+.user_info_img{
+height: 140rpx;
+width: 240rpx;
+float: left;
+}
+
+.user_info_right{
+margin-left: 20rpx;
+}
+
+.user_info_right_title{
+ 
+     
+}
+
+.user_info_right_time{
+   display: block;
+
+}

@@ -1,0 +1,12 @@
+<!-- index.wxml -->
+<view class="container">
+  <view class="list1" wx:for="{{list}}" wx:for-index="list_index" wx:for-item="item" wx:key="index">
+    <view class="user_info">
+      <image class="user_info_img" src="{{item.pic}}" />
+      <view class="user_info_right">
+        <text class="user_info_right_title">{{item.author}}</text>
+        <text class="user_info_right_time">{{item.createtime}}</text>
+      </view>
+    </view>
+  </view>
+</view>
