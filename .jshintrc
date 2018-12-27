@@ -1,0 +1,10 @@
+{
+    "curly": true,
+    "indent": true,
+    "latedef": "nofunc",
+    "newcap": true,
+    "undef": true,
+    "strict": true,
+    "notypeof": true
+  }
+  

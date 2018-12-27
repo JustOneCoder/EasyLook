@@ -21,7 +21,7 @@ float: left;
 }
 
 .user_info_right{
-margin-left: 20rpx;
+ margin-left: 20rpx;
 }
 
 .user_info_right_title{
