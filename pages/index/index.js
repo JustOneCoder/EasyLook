@@ -1,19 +1,21 @@
 /* * @Author: linfeng  
-* @createDate: 2018-12-27 11:24:35  
+ * @createDate: 2018-12-27 11:24:35  
  * @Last Modified by: lingfeng
- * @Last Modified time: 2018-12-27 16:03:19
-* @description: */
-
+ * @Last Modified time: 2019-01-21 20:31:33
+ * @description: 首页
+ * */
+import imageUtil from "../../utils/imageUtil";
 var pageIndex = 1;
 var pageSize = 10;//每页请求的条数
 var state = false;
 var loading = false;
 
-//获取应用实例
+//获取应用实例s
 const app = getApp()
 Page({
   data: {
-    list: [],
+    listData: [],
+    bannerList:[]
   },
 
   /**
@@ -21,7 +23,10 @@ Page({
  */
   onLoad: function (options) {
     console.log('66666onLoad')
-    this.loadResourceList();
+    var that = this;
+    that.imgUtil = new imageUtil(that);
+    that.loadResourceList();
+    that.getBannerList();
   },
 
   /**
@@ -30,7 +35,7 @@ Page({
   onPullDownRefresh: function () {
     console.log('66666Refresh');
     pageIndex = 1;
-    this.data.list = [];
+    this.data.listData = [];
     this.loadResourceList();
   },
 
@@ -56,7 +61,7 @@ Page({
       data: {
         page: pageIndex,
         pageSize: pageSize,
-        userid: 'b87fc65c974f47258fa1544164967419',
+        userid: '00248a0c8f014f08b73cedadd9c0532d',
         informationtypeid: '1'
       },
       method: 'POST',
@@ -71,16 +76,39 @@ Page({
       success(res) {
         wx.stopPullDownRefresh();
         wx.hideLoading();
-        var dataList = that.data.list;
+        var dataList = that.data.listData;
         for (var i = 0; i < res.data.data.length; i++) {
-          dataList.push(res.data.data[i]);
+          var dataArray = res.data.data[i];
+          dataArray.pic = that.imageUrlTransform(dataArray.pic);
+          dataList.push(dataArray);
         }
         if (that.pageIndex == 1) {
-          that.setData({ list: res.data.data })
+          that.setData({ listData: res.data.data })
         } else {
-          that.setData({ list: that.data.list })
+          that.setData({ listData: that.data.listData })
         }
         console.log('66666成功：' + JSON.stringify(res.data.data))
+      }
+    })
+  },
+
+  getBannerList:function(){
+    var that = this;
+    wx.request({
+      url: 'https://fz.meibbc.com/information-core/controller/BannerController/getBanner.html', // 仅为示例，并非真实的接口地址
+      method: 'GET',
+      fail(res) {
+        console.log('66666获取banner失败：' + res.data)
+      },
+      success(res) {
+        var bannerData = [];
+        for (var i = 0; i < res.data.data.length; i++) {
+          var dataArray = res.data.data[i];
+          dataArray.pic = that.imageUrlTransform(dataArray.pic);
+          bannerData.push(dataArray);
+        }
+        that.setData({bannerList: bannerData })
+        console.log('66666获取banner成功：' + JSON.stringify(that.data.bannerList))
       }
     })
   }
